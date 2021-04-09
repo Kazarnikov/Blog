@@ -15,7 +15,7 @@ public class Tag {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     /**
      * текст тэга
      */

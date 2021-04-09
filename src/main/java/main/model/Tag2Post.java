@@ -31,18 +31,18 @@ public class Tag2Post {
     @Data
     @Embeddable
     @EqualsAndHashCode
-    public class KeyId implements Serializable {
+    public static class KeyId implements Serializable {
 
         @Column(name = "tag_id")
-        private int tagId;
+        private long tagId;
 
         @Column(name = "post_id")
-        private int postId;
+        private long postId;
 
         public KeyId() {
         }
 
-        public KeyId(int tagId, int postId) {
+        public KeyId(long tagId, long postId) {
             this.tagId = tagId;
             this.postId = postId;
         }

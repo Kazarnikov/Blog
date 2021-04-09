@@ -3,7 +3,8 @@ package main.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -15,21 +16,20 @@ public class CaptchaCode {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     /**
      * дата и время генерации кода капчи
      */
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date time;
+    @Column(columnDefinition = "DATETIME", nullable = false)
+    private LocalDateTime time;
     /**
      * код, отображаемый на картинке капчи
      */
-    @Column(nullable = false)
-    private byte code;
+    @Column(columnDefinition = "TINYTEXT", nullable = false)
+    private String code;
     /**
      * код, передаваемый в параметре
      */
-    @Column(name = "secret_code",nullable = false)
-    private byte secretCode;
+    @Column(columnDefinition = "TINYTEXT", name = "secret_code", nullable = false)
+    private String secretCode;
 }

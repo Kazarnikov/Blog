@@ -4,7 +4,8 @@ import lombok.Data;
 import main.model.enums.ModerationStatus;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
@@ -17,7 +18,7 @@ public class Post {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     /**
      * скрыта или активна публикация: 0 или 1
      */
@@ -27,7 +28,7 @@ public class Post {
      * статус модерации, по умолчанию значение "NEW".
      */
     @Enumerated(EnumType.STRING)
-    @Column(/*columnDefinition = "ENUM",*/ name = "moderation_status", nullable = false, length = 10)
+    @Column(columnDefinition = "ENUM('')", name = "moderation_status", nullable = false)
     private ModerationStatus status;
     /**
      * ID пользователя-модератора, принявшего решение, или NULL
@@ -44,9 +45,8 @@ public class Post {
     /**
      * дата и время публикации поста
      */
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date time;
+    @Column(columnDefinition = "DATETIME", nullable = false)
+    private LocalDateTime time;
     /**
      * заголовок поста
      */
@@ -55,13 +55,13 @@ public class Post {
     /**
      * текст поста
      */
-    @Column(columnDefinition = "Text", nullable = false)
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String text;
     /**
      * количество просмотров поста
      */
     @Column(name = "view_count", nullable = false)
-    private int viewCount;
+    private long viewCount;
     /**
      * список тэгов для постов
      */

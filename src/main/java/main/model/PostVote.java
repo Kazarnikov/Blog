@@ -3,7 +3,8 @@ package main.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -15,7 +16,7 @@ public class PostVote {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     /**
      * тот, кто поставил лайк / дизлайк
      */
@@ -31,9 +32,8 @@ public class PostVote {
     /**
      * дата и время лайка / дизлайка
      */
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date time;
+    @Column(columnDefinition = "DATETIME", nullable = false)
+    private LocalDateTime time;
     /**
      * лайк или дизлайк: 1 или -1
      */

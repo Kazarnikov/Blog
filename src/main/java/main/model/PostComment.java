@@ -3,7 +3,8 @@ package main.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -23,7 +24,7 @@ public class PostComment {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     /**
      * комментарий, на который оставлен этот комментарий (может
      * быть NULL, если комментарий оставлен просто к посту)
@@ -46,12 +47,11 @@ public class PostComment {
     /**
      * дата и время комментария
      */
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date time;
+    @Column(columnDefinition = "DATETIME", nullable = false)
+    private LocalDateTime time;
     /**
      * текст комментария
      */
-    @Column(nullable = false, columnDefinition = "Text")
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String text;
 }

@@ -1,42 +1,52 @@
 package main.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import main.api.response.InitResponse;
 import main.api.response.SettingsResponse;
-import main.repository.GlobalSettingRepository;
-import main.service.SettingsService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import main.api.response.TagResponse;
+import main.service.SettingsServiceImpl;
+import main.service.TagServiceImpl;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Прочий запросы к API.
  */
+@Slf4j
 @RestController
-@RequestMapping("/api")
+@RequestMapping(path = "/api")
 public class ApiGeneralController {
 
-    @Autowired
-    private GlobalSettingRepository globalSettingRepository;
-
     private final InitResponse initResponse;
-    private final SettingsService settingsService;
+    private final SettingsServiceImpl settingsService;
+    private final TagServiceImpl tagService;
 
-    public ApiGeneralController(InitResponse initResponse, SettingsService settingsService) {
+    public ApiGeneralController(InitResponse initResponse,
+                                SettingsServiceImpl settingsService,
+                                TagServiceImpl tagService) {
+
         this.initResponse = initResponse;
         this.settingsService = settingsService;
+        this.tagService = tagService;
     }
 
     @GetMapping(value = "/settings")
     private SettingsResponse settings() {
         return settingsService.getGlobalSettings();
-
-
     }
 
-    @GetMapping(value = "/init", produces = MediaType.APPLICATION_PROBLEM_JSON_UTF8_VALUE)
-    private InitResponse init() {
-        return initResponse;
+    @GetMapping(value = "/init")
+    private ResponseEntity<InitResponse> init() {
+        return new ResponseEntity<>(initResponse, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/tag")
+    public ResponseEntity<TagResponse> getTeg(@RequestParam(required = false) String query) {
+        log.info("IN getTeg - query: {}", query);
+        return new ResponseEntity<>(tagService.findTags(query), HttpStatus.OK);
     }
 }

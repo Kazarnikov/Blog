@@ -1,4 +1,4 @@
-package main.repository;
+package main.model.repository;
 
 import main.model.CaptchaCode;
 import org.springframework.data.repository.CrudRepository;

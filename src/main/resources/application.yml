@@ -1,17 +1,29 @@
 spring:
+  main:
+# spring
+    banner-mode: "off"
+  output.ansi.enabled: ALWAYS
+#DB connect
   datasource:
-            url: jdbc:mysql://localhost:3306/blogStorage
-            username: myRoot
-            password: 147258369
-  spring:
-      jpa:
-          hibernate.ddl-auto: validate
-          show-sql: false
+    url: jdbc:mysql://localhost:3306/blogStorage
+    username: myRoot
+    password: 147258369
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate.ddl-auto: validate
+    show-sql: true
+#liquibase
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.xml
+    enabled: true
 
-blog:
-  title: DevPub
-  subTitle: Рассказы разработчиков
-  blog.phone: +7 951-408-60-62
-  blog.email: BlogDev@email.com
-  blog.copyright: Kazarnikov Aleksandr
-  blog.copyrightFrom: 2021
+logging.level.: INFO
+
+#settings for Blog:
+blog.title: DevPub
+blog.subTitle: Рассказы разработчиков
+blog.phone: +7 951-408-60-62
+blog.email: BlogDev@email.com
+blog.copyright: Kazarnikov Aleksandr
+blog.copyrightFrom: 2021

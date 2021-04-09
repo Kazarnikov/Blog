@@ -1,0 +1,73 @@
+CREATE TABLE captcha_codes (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+	code TINYTEXT NOT NULL,
+	secret_code TINYTEXT NOT NULL,
+	time DATETIME NOT NULL,
+	PRIMARY KEY (id));
+
+CREATE TABLE global_settings (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+	code VARCHAR(255) NOT NULL,
+	name VARCHAR(255) NOT NULL,
+	value VARCHAR(255) NOT NULL,
+	PRIMARY KEY (id));
+
+CREATE TABLE post_comments (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+	text TEXT NOT NULL,
+	time DATETIME NOT NULL,
+	parent_id BIGINT,
+	post_id BIGINT NOT NULL,
+	user_id BIGINT NOT NULL,
+	PRIMARY KEY (id));
+
+CREATE TABLE post_votes (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+	time DATETIME NOT NULL,
+	value TINYINT NOT NULL,
+	post_id BIGINT NOT NULL,
+	user_id BIGINT NOT NULL,
+	PRIMARY KEY (id));
+
+CREATE TABLE posts (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+	is_active TINYINT NOT NULL,
+	moderation_status ENUM('NEW', 'ACCEPTED', 'DECLINED') NOT NULL DEFAULT 'NEW',
+	text TEXT NOT NULL,
+	time DATETIME NOT NULL,
+	title VARCHAR(255) NOT NULL,
+	view_count BIGINT NOT NULL,
+	moderator_id BIGINT,
+	user_id BIGINT NOT NULL,
+	PRIMARY KEY (id));
+
+CREATE TABLE tag2post (
+    post_id BIGINT NOT NULL,
+	tag_id BIGINT NOT NULL,
+	PRIMARY KEY (post_id, tag_id));
+
+CREATE TABLE tags (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(255) NOT NULL,
+	PRIMARY KEY (id));
+
+CREATE TABLE users (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+	code VARCHAR(255),
+	email VARCHAR(255) NOT NULL,
+	is_moderator TINYINT NOT NULL,
+	name VARCHAR(255) NOT NULL,
+	password VARCHAR(255) NOT NULL,
+	photo TEXT,
+	reg_time DATETIME NOT NULL,
+	PRIMARY KEY (id));
+
+ALTER TABLE post_comments ADD CONSTRAINT FKc3b7s6wypcsvua2ycn4o1lv2c FOREIGN KEY (parent_id) REFERENCES post_comments (id);
+ALTER TABLE post_comments ADD CONSTRAINT FKaawaqxjs3br8dw5v90w7uu514 FOREIGN KEY (post_id) REFERENCES posts (id);
+ALTER TABLE post_comments ADD CONSTRAINT FKsnxoecngu89u3fh4wdrgf0f2g FOREIGN KEY (user_id) REFERENCES users (id);
+ALTER TABLE post_votes ADD CONSTRAINT FK9jh5u17tmu1g7xnlxa77ilo3u FOREIGN KEY (post_id) REFERENCES posts (id);
+ALTER TABLE post_votes ADD CONSTRAINT FK9q09ho9p8fmo6rcysnci8rocc FOREIGN KEY (user_id) REFERENCES users (id);
+ALTER TABLE posts ADD CONSTRAINT FK6m7nr3iwh1auer2hk7rd05riw FOREIGN KEY (moderator_id) REFERENCES users (id);
+ALTER TABLE posts ADD CONSTRAINT FK5lidm6cqbc7u4xhqpxm898qme FOREIGN KEY (user_id) REFERENCES users (id);
+ALTER TABLE tag2post ADD CONSTRAINT FKpjoedhh4h917xf25el3odq20i FOREIGN KEY (post_id) REFERENCES posts (id);
+ALTER TABLE tag2post ADD CONSTRAINT FKjou6suf2w810t2u3l96uasw3r FOREIGN KEY (tag_id) REFERENCES tags (id);

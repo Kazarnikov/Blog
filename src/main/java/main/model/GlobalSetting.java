@@ -14,7 +14,7 @@ public class GlobalSetting {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     /**
      * системное имя настройки
      */

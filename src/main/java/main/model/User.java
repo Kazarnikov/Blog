@@ -3,7 +3,7 @@ package main.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -15,7 +15,7 @@ public class User {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     /**
      * является ли пользователь модератором
      */
@@ -24,9 +24,8 @@ public class User {
     /**
      * дата и время регистрации пользователя
      */
-    @Column(name = "reg_time", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date regTime;
+    @Column(columnDefinition = "DATETIME", name = "reg_time", nullable = false)
+    private LocalDateTime regTime;
     /**
      * имя пользователя
      */
@@ -49,6 +48,6 @@ public class User {
     /**
      * фотография (ссылка на файл), может быть NULL
      */
-    @Column(columnDefinition = "Text")
+    @Column(columnDefinition = "TEXT")
     private String photo;
 }
