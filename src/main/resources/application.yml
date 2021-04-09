@@ -1,0 +1,17 @@
+spring:
+  datasource:
+            url: jdbc:mysql://localhost:3306/blogStorage
+            username: myRoot
+            password: 147258369
+  spring:
+      jpa:
+          hibernate.ddl-auto: validate
+          show-sql: false
+
+blog:
+  title: DevPub
+  subTitle: Рассказы разработчиков
+  blog.phone: +7 951-408-60-62
+  blog.email: BlogDev@email.com
+  blog.copyright: Kazarnikov Aleksandr
+  blog.copyrightFrom: 2021
