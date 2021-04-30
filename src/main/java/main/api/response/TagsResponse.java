@@ -1,8 +1,11 @@
-package main.DTO;
+package main.api.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import main.DTO.TagDTO;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Setter
 @Getter
@@ -10,11 +13,8 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @NoArgsConstructor
 @Component
-public class TagDTO {
+public class TagsResponse {
 
-    @JsonProperty("name")
-    private String name;
-
-    @JsonProperty("weight")
-    private double weight;
+    @JsonProperty("tags")
+    private List<TagDTO> tags;
 }

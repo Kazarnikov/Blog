@@ -15,7 +15,7 @@ public class User {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     /**
      * является ли пользователь модератором
      */
@@ -50,4 +50,12 @@ public class User {
      */
     @Column(columnDefinition = "TEXT")
     private String photo;
+
+    public Role getRole() {
+        return isModerator == 1 ? Role.MODERATOR : Role.USER;
+    }
+
+    public boolean getIsModerator() {
+        return isModerator == 1;
+    }
 }

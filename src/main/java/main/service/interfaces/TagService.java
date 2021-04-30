@@ -1,11 +1,12 @@
 package main.service.interfaces;
 
-import main.api.response.TagResponse;
+import main.api.response.TagsResponse;
 import main.service.TagServiceImpl;
 
 /**
  * PostService interface for {@link TagServiceImpl} class.
  */
 public interface TagService {
-    TagResponse findTags(String query);
+
+    TagsResponse findTags(String query);
 }

@@ -1,9 +1,10 @@
 package main.model.enums;
+
 /**
- *статусы модерации
- * */
+ * статусы модерации
+ */
 public enum ModerationStatus {
     NEW,
     ACCEPTED,
-    DECLINED;
+    DECLINED
 }

@@ -1,20 +1,21 @@
 package main.DTO;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Builder
-@Data
+@Setter
+@Getter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
+public class PostUserByIdDTO {
 
     @JsonProperty("id")
     private long id;
 
     @JsonProperty("name")
     private String name;
+
+    @JsonProperty("photo")
+    private String photo;
 }

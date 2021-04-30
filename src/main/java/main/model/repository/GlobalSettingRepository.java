@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Repository interface for {@link GlobalSetting} class.
  */
 @Repository
-public interface GlobalSettingRepository extends CrudRepository<GlobalSetting, Integer> {
+public interface GlobalSettingRepository extends CrudRepository<GlobalSetting, Long> {
 }

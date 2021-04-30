@@ -1,4 +1,4 @@
-package main.DTO;
+package main.api.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -10,11 +10,12 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @NoArgsConstructor
 @Component
-public class TagDTO {
+public class LoginRequest {
 
-    @JsonProperty("name")
-    private String name;
+    @JsonProperty("e_mail")
+    private String email;
 
-    @JsonProperty("weight")
-    private double weight;
+    @JsonProperty("password")
+    private String password;
 }
+

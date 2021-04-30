@@ -3,7 +3,6 @@ package main.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -16,7 +15,7 @@ public class CaptchaCode {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     /**
      * дата и время генерации кода капчи
      */

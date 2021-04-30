@@ -34,15 +34,15 @@ public class Tag2Post {
     public static class KeyId implements Serializable {
 
         @Column(name = "tag_id")
-        private long tagId;
+        private Long tagId;
 
         @Column(name = "post_id")
-        private long postId;
+        private Long postId;
 
         public KeyId() {
         }
 
-        public KeyId(long tagId, long postId) {
+        public KeyId(Long tagId, Long postId) {
             this.tagId = tagId;
             this.postId = postId;
         }

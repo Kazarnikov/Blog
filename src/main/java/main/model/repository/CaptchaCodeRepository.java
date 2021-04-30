@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Repository interface for {@link CaptchaCode} class.
  */
 @Repository
-public interface CaptchaCodeRepository extends CrudRepository<CaptchaCode, Integer> {
+public interface CaptchaCodeRepository extends CrudRepository<CaptchaCode, Long> {
 }

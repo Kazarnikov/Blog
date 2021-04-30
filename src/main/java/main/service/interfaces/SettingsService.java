@@ -1,11 +1,12 @@
 package main.service.interfaces;
 
-import main.api.response.SettingsResponse;
+import main.DTO.SettingsDTO;
 import main.service.SettingsServiceImpl;
 
 /**
  * PostService interface for {@link SettingsServiceImpl} class.
  */
 public interface SettingsService {
-    SettingsResponse getGlobalSettings();
+
+    SettingsDTO getGlobalSettings();
 }

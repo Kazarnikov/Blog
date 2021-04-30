@@ -1,8 +1,13 @@
-package main.DTO;
+package main.api.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import main.DTO.PostCommentByIdDTO;
+import main.DTO.PostUserDTO;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+
 
 @Setter
 @Getter
@@ -10,7 +15,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @NoArgsConstructor
 @Component
-public class PostDTO {
+public class PostByIdResponse {
 
     @JsonProperty("id")
     private long id;
@@ -18,14 +23,17 @@ public class PostDTO {
     @JsonProperty("timestamp")
     private long time;
 
+    @JsonProperty("active")
+    private boolean active;
+
     @JsonProperty("user")
     private PostUserDTO user;
 
     @JsonProperty("title")
     private String title;
 
-    @JsonProperty("announce")
-    private String announce;
+    @JsonProperty("text")
+    private String text;
 
     @JsonProperty("likeCount")
     private long likeCount;
@@ -33,9 +41,12 @@ public class PostDTO {
     @JsonProperty("dislikeCount")
     private long dislikeCount;
 
-    @JsonProperty("commentCount")
-    private long commentCount;
-
     @JsonProperty("viewCount")
     private long viewCount;
+
+    @JsonProperty("comments")
+    private List<PostCommentByIdDTO> comments;
+
+    @JsonProperty("tags")
+    private List<String> tags;
 }

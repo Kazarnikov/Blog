@@ -17,4 +17,9 @@ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <include file="/v-2.0/db.changelog-v2.0.xml" relativeToChangelogFile="true"/>
 
+    <changeSet id="3.0 update" author="Aleksandr">
+        <tagDatabase tag="db-insert"/>
+    </changeSet>
+
+    <include file="/v-2.0/db.changelog-v2.0.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

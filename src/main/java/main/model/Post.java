@@ -1,24 +1,25 @@
 package main.model;
 
 import lombok.Data;
+import lombok.ToString;
 import main.model.enums.ModerationStatus;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @Entity
 @Table(name = "posts")
 public class Post {
+
     /**
      * id поста
      */
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     /**
      * скрыта или активна публикация: 0 или 1
      */
@@ -33,9 +34,8 @@ public class Post {
     /**
      * ID пользователя-модератора, принявшего решение, или NULL
      */
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinColumn(name = "moderator_id")
-    private User moderatorId;
+    @Column(name = "moderator_id")
+    private Long moderatorId;
     /**
      * автор поста
      */
@@ -65,9 +65,11 @@ public class Post {
     /**
      * список тэгов для постов
      */
-    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @ToString.Exclude
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH},
+            fetch = FetchType.LAZY)
     @JoinTable(name = "tag2post",
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
-    private Set<Tag> postTags;
+    private List<Tag> tagsList;
 }

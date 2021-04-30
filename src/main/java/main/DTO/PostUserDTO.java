@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @NoArgsConstructor
 @Component
-public class TagDTO {
+public class PostUserDTO {
+
+    @JsonProperty("id")
+    private long id;
 
     @JsonProperty("name")
     private String name;
-
-    @JsonProperty("weight")
-    private double weight;
 }

@@ -1,9 +1,9 @@
 package main.DTO.interfaces;
 
-import main.api.response.TagResponse;
+import main.api.response.TagsResponse;
 
 /**
- * Forming response for {@link TagResponse} class
+ * Forming response for {@link TagsResponse} class
  */
 public interface TagAnswerStatistics {
 

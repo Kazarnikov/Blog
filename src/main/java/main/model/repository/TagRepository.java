@@ -13,7 +13,7 @@ import java.util.List;
  * Repository interface for {@link Tag} class.
  */
 @Repository
-public interface TagRepository extends CrudRepository<Tag, Integer> {
+public interface TagRepository extends CrudRepository<Tag, Long> {
 
     @Query(value = "SELECT t.name AS name, count(t.name) AS count FROM tags AS t\n" +
             "LEFT JOIN tag2post AS t2p ON t.id = t2p.tag_id \n" +

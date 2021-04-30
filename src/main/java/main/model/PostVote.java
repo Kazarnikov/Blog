@@ -3,7 +3,6 @@ package main.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -16,19 +15,17 @@ public class PostVote {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     /**
      * тот, кто поставил лайк / дизлайк
      */
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinColumn(name = "user_id", nullable = false)
-    private User userId;
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
     /**
      * пост, которому поставлен лайк / дизлайк
      */
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinColumn(name = "post_id", nullable = false)
-    private Post postId;
+    @Column(name = "post_id", nullable = false)
+    private Long postId;
     /**
      * дата и время лайка / дизлайка
      */

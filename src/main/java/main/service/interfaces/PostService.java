@@ -1,14 +1,10 @@
 package main.service.interfaces;
 
-import main.api.response.PostResponse;
-import main.model.Post;
-import main.model.enums.ModerationStatus;
+import main.api.response.CalendarResponse;
+import main.api.response.PostByIdResponse;
+import main.api.response.PostsResponse;
 import main.service.PostServiceImpl;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
-import java.util.Date;
-import java.util.List;
 /**
  * PostService interface for {@link PostServiceImpl} class.
  */
@@ -17,28 +13,29 @@ public interface PostService {
     /**
      * Список постов - GET /api/post
      */
-    PostResponse findAllPost(int offset, int limit, String mode);
-//
-//    /**
-//     * Поиск постов - GET /api/post/search
-//     */
-//    List<Post> findSearch(String s);
-//
-//    /**
-//     * Список постов за указанную дату - GET /api/post/byDate
-//     */
-//    List<Post> findByDate(Date date);
+    PostsResponse findAllPost(int offset, int limit, String mode);
 
-//    /**
-//     * Список постов по тэгу - GET /api/post/byTag
-//     */
-//    PostResponse findByTag(Pageable pageable, String tag);
+    /**
+     * Поиск постов - GET /api/post/search
+     */
+    PostsResponse findAllBySearch(int offset, int limit, String query);
 //
-//    /**
-//     * Получение поста - GET /api/post/{ID}
-//     */
-//    Post findById(Integer id);
-//
+
+    /**
+     * Список постов за указанную дату - GET /api/post/byDate
+     */
+    PostsResponse findPostByDate(int offset, int limit, String date);
+
+    /**
+     * Список постов по тэгу - GET /api/post/byTag
+     */
+    PostsResponse findPostByTag(int offset, int limit, String tag);
+
+    /**
+     * Получение поста - GET /api/post/{ID}
+     */
+    PostByIdResponse findPostById(Long id);
+
 //    /**
 //     * Список постов на модерацию - GET /api/post/moderation
 //     */
@@ -48,6 +45,9 @@ public interface PostService {
 //     * Список моих постов - GET /api/post/my
 //     */
 //    List<Post> findByMyId(Integer id);
+
+    CalendarResponse numberPostsDate(Integer year);
+
 //
 ///**-----------POST-------------*/
 //

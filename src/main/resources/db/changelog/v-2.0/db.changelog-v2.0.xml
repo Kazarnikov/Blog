@@ -15,4 +15,16 @@ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
                  path="02-insert-db.sql"/>
     </changeSet>
 
+    <changeSet id="3.1 update" author="Aleksandr">
+        <sqlFile dbms="mysql"
+                 encoding="UTF-8"
+                 endDelimiter=";"
+                 relativeToChangelogFile="true"
+                 splitStatements="true"
+                 stripComments="true"
+                 path="03-update-02-insert-db.sql"/>
+    </changeSet>
+
+
+
 </databaseChangeLog>
